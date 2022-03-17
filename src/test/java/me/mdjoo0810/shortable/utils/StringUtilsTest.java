@@ -35,4 +35,10 @@ class StringUtilsTest {
         assertEquals(hash, stringUtils.decodeUrlBase64(encode));
     }
 
+    @Test
+    void random_str() {
+        String randomString = stringUtils.randomString(8);
+        assertEquals(8, randomString.length());
+    }
+
 }
