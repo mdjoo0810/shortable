@@ -92,5 +92,5 @@ tasks.named('test') {
         destinationFile = file("$buildDir/jacoco/jacoco.exec")
     }
 
-    finalizedBy 'jacocoTestReport'
+//    finalizedBy 'jacocoTestReport'
 }
