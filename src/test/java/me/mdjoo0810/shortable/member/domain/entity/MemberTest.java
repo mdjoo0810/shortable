@@ -9,6 +9,7 @@ class MemberTest {
     @Test
     void create_no_constructor() {
         Member member = new Member();
+        assertNotNull(member);
     }
 
     @Test
