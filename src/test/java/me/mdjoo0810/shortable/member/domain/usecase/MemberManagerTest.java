@@ -6,6 +6,7 @@ import me.mdjoo0810.shortable.member.domain.entity.MemberInfo;
 import me.mdjoo0810.shortable.member.domain.entity.MemberStore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -18,7 +19,9 @@ class MemberManagerTest {
     void register_anonymous_valid() {
         MemberStore mockStore = mock(MemberStore.class);
         when(mockStore.store(any())).thenReturn(MemberFixture.get());
-        MemberManager manager = new MemberManager(CommonFixture.getDomainURL(), mockStore);
+        MemberManager manager = new MemberManager(mockStore);
+
+        ReflectionTestUtils.setField(manager, "DOMAIN_URL", CommonFixture.getDomainURL());
 
         String randomString = "anonymous";
 

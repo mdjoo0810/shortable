@@ -13,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class MemberManager implements Members{
+
     @Value("${domain-url}")
-    private final String DOMAIN_URL;
+    private String DOMAIN_URL;
+
     private final MemberStore memberStore;
 
     @Override
