@@ -15,8 +15,7 @@ public class KeyManagerImpl implements KeyManager {
 
     @Override
     public String convertShortKey(String originalKey) {
-        if (originalKey.length() != 64) throw new IllegalArgumentException("Not valid Key");
-        return originalKey.substring(0, 6);
+        return originalKey.substring(0, 8);
     }
 
 }

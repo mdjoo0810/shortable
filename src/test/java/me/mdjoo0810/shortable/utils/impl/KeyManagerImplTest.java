@@ -26,14 +26,7 @@ class KeyManagerImplTest {
     @Test
     void convert_valid_in_valid_out() {
         String key = manager.convertShortKey(code);
-        assertEquals(6, key.length());
-    }
-
-    @Test
-    void convert_invalid_in_thr_ex() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            manager.convertShortKey("invalid_key");
-        });
+        assertEquals(8, key.length());
     }
 
 }
