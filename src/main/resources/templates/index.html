@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link th:href="@{/css/reset.css}" rel="stylesheet" />
+    <link th:href="@{/css/common.css}" rel="stylesheet" />
+
+    <title>Shortable</title>
+</head>
+<body>
+<header>
+    <h1>Shortable</h1>
+</header>
+<div class="container">
+    <div class="card mb24">
+        <h2>Paste the URL to be shortened</h2>
+        <form class="flex shortern-form">
+            <input type="url" placeholder="Enter the link here" >
+            <button>Shorten URL</button>
+        </form>
+        <!-- <div class="flex res-form">
+            <input id="res-url" type="url" readonly value="http://shortable/123456">
+            <button id="copy">Copy URL</button>
+
+        </div>
+        <p>Original URL :
+            <a>https://cert.mma.go.kr/brci/brci_appCall.jsp?url=mmaauth://data?profile=eyJpZCI6ImRpZDptbWE6MzF2Q1p6QkJ5UnBGQ0V2ajJRZ3JmYmc0V0M1TiIsInByb2ZpbGUiOnsiY2FsbEJhY2tVcmwiOiJodHRwczovL3Rlc3RuZXQub21uaW9uZS5uZXQ6ODQ0My9tbWEtc2FtcGxlL2FwaS9zYXZlVnAiLCJlbmNyeXB0VHlwZSI6MiwiZmlsdGVyIjp7ImFsbG93SXNzdWVyTGlzdCI6WyJkaWQ6bW1hOjU3Z0FVM2ZaMkpLN2hIYWJSYXR3SHp6b1VieCJdLCJyZXF1aXJlZEFzc2VydGlvbkxpc3QiOlt7ImlkIjoiaXl5anNzaGlzIiwibmFtZSI6IuyeheyYgSjsmIjsoJUpIOyCrOyLpCDtmZXsnbjshJwiLCJ0eXBlIjoiaXl5anNzaGlzIn0seyJpZCI6InNoYm15eWJtaGlzIiwibmFtZSI6IuyCrO2ajOuzteustOyalOybkCDrs7XrrLTtmZXsnbjshJwiLCJ0eXBlIjoic2hibXl5Ym1oaXMifSx7ImlkIjoianlqIiwibmFtZSI6IuyghOyXreymnSIsInR5cGUiOiJqeWoifV0sInJlcXVpcmVkUHJpdmFjeUxpc3QiOlsidmN0eXBlY29kZSJdfSwibmFtZSI6IlRBXyDqsJzrsJzqsoDspp0iLCJub25jZSI6IjI4NWM1MmRhZmVmMDY3OGM4YjI3ZTI3ZTdjNDIyYzMxNmY4OTQzYjlkODc2NmMzYzNlNmJjMDRiODJmZWMwOTgiLCJwdWJsaWNLZXkiOiJoZEgxVmt5RXFmZGR2Qkg3bzlqSFFlckJHVlhKbXByTUoycnRzR3FiVFh3MSIsInR5cGUiOiJWRVJJRlkifSwicHJvb2YiOnsiY3JlYXRlZCI6IjIwMjEtMTEtMjlUMDg6MTk6NTMiLCJjcmVhdG9yIjoi</a>
+        </p> -->
+    </div>
+    <div class="card mb24">
+        Want apply your service?
+        <p>we provide API for developers.</p>
+        <a class="link">Go API Documents</a>
+    </div>
+    <footer>
+        <div class="card mb24">
+            <p>© 2022 Shortable - Tool to shorten a long link.</p>
+            <ul>
+                <li><a>Shortable.me</a></li>
+                <li><a>Privacy</a></li>
+                <li><a>Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<script src="./js/index.js"></script>
+</body>
+</html>
