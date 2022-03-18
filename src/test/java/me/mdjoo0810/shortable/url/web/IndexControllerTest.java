@@ -8,6 +8,7 @@ import me.mdjoo0810.shortable.member.domain.entity.MemberInfoFixture;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.Cookie;
 
@@ -28,7 +29,7 @@ class IndexControllerTest {
         when(memberFacade.registerAnonymous()).thenReturn(MemberInfoFixture.get());
 
         IndexController controller = new IndexController(memberFacade);
-        controller.index(request, response);
+        controller.index(null, request, response, "", "");
         Cookie cookie = response.getCookie(CookieKey.LOGIN_USER.getValue());
         assertEquals(MemberInfoFixture.get().getEmail(), Objects.requireNonNull(cookie).getValue());
     }
@@ -45,7 +46,41 @@ class IndexControllerTest {
 
 
         IndexController controller = new IndexController(memberFacade);
-        String index = controller.index(request, response);
+        String index = controller.index(null, request, response, "", "");
+
+        assertEquals("index", index);
+    }
+
+    @Test
+    void index_redirect_success_shorten_url() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        MockHttpServletResponse response = new MockHttpServletResponse();
+        Model mockModel = mock(Model.class);
+        MemberInfo memberInfo = MemberInfoFixture.get();
+
+        Cookie tmpCookie = new Cookie(CookieKey.LOGIN_USER.getValue(), memberInfo.getEmail());
+        request.setCookies(tmpCookie);
+
+
+        IndexController controller = new IndexController(memberFacade);
+        String index = controller.index(mockModel, request, response, "https://test.com/short", "https://test.com/original");
+
+        assertEquals("index", index);
+    }
+
+    @Test
+    void index_redirect_failed_shorten_url() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        MockHttpServletResponse response = new MockHttpServletResponse();
+        Model mockModel = mock(Model.class);
+        MemberInfo memberInfo = MemberInfoFixture.get();
+
+        Cookie tmpCookie = new Cookie(CookieKey.LOGIN_USER.getValue(), memberInfo.getEmail());
+        request.setCookies(tmpCookie);
+
+
+        IndexController controller = new IndexController(memberFacade);
+        String index = controller.index(mockModel, request, response, "https://test.com/short", "");
 
         assertEquals("index", index);
     }
