@@ -24,10 +24,10 @@ public class Member {
 
     }
 
-    public static Member anonymous(String randomUsername) {
+    public static Member anonymous(String randomEmail) {
         return Member.builder()
                 .name("GUEST")
-                .email(randomUsername + "@shortable.me")
+                .email(randomEmail)
                 .build();
     }
 
