@@ -97,9 +97,9 @@ pipeline {
             steps {
                 echo 'SSH'
                 sshagent(['SHORTABLE_APP_INS_1']) {
-                    sh 'ssh -o StrictHostKeyChecking=no root@141.164.40.94 "whoami"'
-                    sh "ssh -o StrictHostKeyChecking=no root@141.164.40.94 'docker pull shortabledokcer/shortable_app:1.0'"
-                    sh "ssh -o StrictHostKeyChecking=no root@141.164.40.94 'docker run shortabledokcer/shortable_app:1.0'"
+                    sh 'ssh -o StrictHostKeyChecking=no -l root 141.164.40.94 whoami'
+                    sh 'ssh -o StrictHostKeyChecking=no -l root 141.164.40.94 docker pull shortabledokcer/shortable_app:1.0'
+                    sh 'ssh -o StrictHostKeyChecking=no -l root 141.164.40.94 docker run shortabledokcer/shortable_app:1.0'
                 }
             }
             post {
