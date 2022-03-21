@@ -22,3 +22,9 @@
 [Document SITE](https://api.shortable.link/document)
 
 API Document Site 제작중
+
+```shell
+docker run -d -p 8080:8080 -p 50000:50000 -v /jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --name jenkins -u root jenkins/jenkins:lts
+
+docker run -itd --name jenkins -p 8080:8080 -p 50000:50000 -v $(which docker):/usr/bin/docker -v /docker/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -e TZ=Asia/Seoul -u root jenkins/jenkins:latest
+```
