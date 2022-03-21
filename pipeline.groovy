@@ -6,9 +6,9 @@ pipeline {
     }
 
     environment {
-        imagename = "shortable_app"
+        imagename = "shortabledokcer/shortable_app"
         registryCredential = 'SHORTABLE_DOCKER_HUB'
-        dockerImage = 'shortabledokcer:shortable_app'
+        dockerImage = ''
     }
 
     stages {
@@ -89,6 +89,25 @@ pipeline {
                 }
                 failure {
                     slackSend channel: '#ci-cd', color: 'danger', message: "Docker 이미지 배포에 실패하였습니다."
+                }
+            }
+        }
+
+        stage('SSH SERVER') {
+            steps {
+                echo 'SSH'
+                sshagent(['SHORTABLE_APP_INS_1']) {
+                    sh 'ssh -o StrictHostKeyChecking=no root@141.164.40.94 "whoami"'
+                    sh "ssh -o StrictHostKeyChecking=no root@141.164.40.94 'docker pull shortabledokcer/shortable_app:1.0'"
+                    sh "ssh -o StrictHostKeyChecking=no root@141.164.40.94 'docker run shortabledokcer/shortable_app:1.0'"
+                }
+            }
+            post {
+                success {
+                    slackSend channel: '#ci-cd', color: 'good', message: "서버 인스턴스가 배포되었습니다."
+                }
+                failure {
+                    slackSend channel: '#ci-cd', color: 'danger', message: "서버 인스턴스가 배포에 실패하였습니다."
                 }
             }
         }
