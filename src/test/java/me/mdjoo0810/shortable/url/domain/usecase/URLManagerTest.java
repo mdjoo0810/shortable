@@ -2,10 +2,7 @@ package me.mdjoo0810.shortable.url.domain.usecase;
 
 import me.mdjoo0810.shortable.member.domain.entity.MemberFixture;
 import me.mdjoo0810.shortable.member.domain.entity.MemberReader;
-import me.mdjoo0810.shortable.url.domain.entity.URL;
-import me.mdjoo0810.shortable.url.domain.entity.URLFixture;
-import me.mdjoo0810.shortable.url.domain.entity.URLInfo;
-import me.mdjoo0810.shortable.url.domain.entity.URLStore;
+import me.mdjoo0810.shortable.url.domain.entity.*;
 import me.mdjoo0810.shortable.utils.KeyManager;
 import me.mdjoo0810.shortable.utils.StringUtils;
 import me.mdjoo0810.shortable.utils.impl.KeyManagerImpl;
@@ -22,12 +19,13 @@ class URLManagerTest {
     StringUtils stringUtils = new StringUtils();
     KeyManager keyManager = new KeyManagerImpl();
     URLStore mockStore = mock(URLStore.class);
+    URLReader mockReader = mock(URLReader.class);
     MemberReader mockMemberReader = mock(MemberReader.class);
 
     @Test
     void make_shorten_url() {
         when(mockMemberReader.findByEmail(MemberFixture.get().getEmail())).thenReturn(Optional.of(MemberFixture.get()));
-        URLManager urlManager = new URLManager(stringUtils, keyManager, mockStore, mockMemberReader);
+        URLManager urlManager = new URLManager(stringUtils, keyManager, mockStore, mockReader, mockMemberReader);
         URLInfo urlInfo = urlManager.makeShorten(MemberFixture.get().getEmail(), "https://google.com");
 
         assertEquals("https://google.com", urlInfo.getOriginalURL());
@@ -37,7 +35,7 @@ class URLManagerTest {
     @Test
     void make_shorten_url_failed_no_member() {
         when(mockMemberReader.findByEmail(MemberFixture.get().getEmail())).thenReturn(Optional.of(MemberFixture.get()));
-        URLManager urlManager = new URLManager(stringUtils, keyManager, mockStore, mockMemberReader);
+        URLManager urlManager = new URLManager(stringUtils, keyManager, mockStore, mockReader, mockMemberReader);
 
         assertThrows(IllegalArgumentException.class, () -> {
             urlManager.makeShorten("no", "https://google.com");

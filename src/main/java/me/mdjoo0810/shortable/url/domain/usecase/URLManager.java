@@ -23,6 +23,7 @@ public class URLManager implements URLs{
     private final KeyManager keyManager;
 
     private final URLStore urlStore;
+    private final URLReader urlReader;
     private final MemberReader memberReader;
 
     @Override
@@ -37,6 +38,12 @@ public class URLManager implements URLs{
         urlStore.store(initURL);
 
         return new URLInfo(shortenKey, originalUrl);
+    }
+
+    @Override
+    public URLInfo getURLInfo(String code) {
+
+        return null;
     }
 
     private String getShortenKey(String hash) {
