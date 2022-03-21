@@ -41,9 +41,11 @@ public class URLManager implements URLs{
     }
 
     @Override
+    @Transactional
     public URLInfo getURLInfo(String code) {
         String decodeStr = stringUtils.decodeUrlBase64(code);
         URL url = urlReader.getByCodeLike(decodeStr + "%").orElseThrow(() -> new IllegalArgumentException("NO URL ROW : " + code + " decoded : " + decodeStr));
+        url.redirect();
         String shortenKey = getShortenKey(url.getHash());
         return new URLInfo(shortenKey, url.getOriginalURL());
     }

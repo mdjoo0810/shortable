@@ -38,7 +38,8 @@ public class UrlController {
 
         URLInfo urlInfo = urlFacade.makeShortenURL(cookie.get().getValue(), dto.getOriginalUrl());
 
-        redirectAttributes.addAttribute("shortenUrl", "https://shortable.me/" + urlInfo.getShortenKey());
+//        redirectAttributes.addAttribute("shortenUrl", "https://shortable.me/" + urlInfo.getShortenKey());
+        redirectAttributes.addAttribute("shortenUrl", "http://localhost:8080/" + urlInfo.getShortenKey());
         redirectAttributes.addAttribute("originalUrl", urlInfo.getOriginalURL());
         return "redirect:/";
     }

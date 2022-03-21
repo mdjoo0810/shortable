@@ -11,6 +11,7 @@ public class URLFixture {
         URL url = new URL();
         ReflectionTestUtils.setField(url, "hash", hash);
         ReflectionTestUtils.setField(url, "originalURL", "https://google.com");
+        ReflectionTestUtils.setField(url, "redirectCount", 0);
         ReflectionTestUtils.setField(url, "createdAt", ZonedDateTime.now());
         ReflectionTestUtils.setField(url, "expirationAt", ZonedDateTime.now().plusDays(7));
         ReflectionTestUtils.setField(url, "member", MemberFixture.get());

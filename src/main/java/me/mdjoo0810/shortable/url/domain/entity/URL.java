@@ -19,6 +19,8 @@ public class URL {
 
     private String originalURL;
 
+    private int redirectCount;
+
     private ZonedDateTime createdAt;
     private ZonedDateTime expirationAt;
 
@@ -33,4 +35,8 @@ public class URL {
         this.createdAt = ZonedDateTime.now();
         this.expirationAt = expirationAt;
     }
+
+    public void redirect() {
+        this.redirectCount++;
+    };
 }
