@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import me.mdjoo0810.shortable.common.enums.CookieKey;
 import me.mdjoo0810.shortable.member.application.MemberFacade;
 import me.mdjoo0810.shortable.member.domain.entity.MemberInfo;
+import me.mdjoo0810.shortable.url.application.URLFacade;
 import me.mdjoo0810.shortable.utils.CookieUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
@@ -20,6 +22,7 @@ import java.util.Optional;
 public class IndexController {
 
     private final MemberFacade memberFacade;
+    private final URLFacade urlFacade;
 
     @GetMapping
     public String index(
@@ -42,6 +45,14 @@ public class IndexController {
         }
 
         return "index";
+    }
+
+    @GetMapping("/{code}")
+    public String redirect(
+            @PathVariable String code
+    ) {
+        String originalURL = urlFacade.getOriginalURL(code);
+        return "redirect:" + originalURL;
     }
 
 }
