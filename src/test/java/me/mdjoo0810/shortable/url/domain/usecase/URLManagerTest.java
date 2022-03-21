@@ -42,4 +42,19 @@ class URLManagerTest {
         });
     }
 
+    @Test
+    void get_url_info() {
+        URLManager urlManager = new URLManager(stringUtils, keyManager, mockStore, mockReader, mockMemberReader);
+        when(mockReader.getByCodeLike(anyString())).thenReturn(Optional.of(URLFixture.get("testtest")));
+        URLInfo test = urlManager.getURLInfo("testtest");
+        assertEquals(URLFixture.get("testtest").getOriginalURL(), test.getOriginalURL());
+    }
+
+    @Test
+    void get_url_throw_no_url() {
+        URLManager urlManager = new URLManager(stringUtils, keyManager, mockStore, mockReader, mockMemberReader);
+        when(mockReader.getByCodeLike("testtest")).thenReturn(Optional.empty());
+        assertThrows(IllegalArgumentException.class, () -> urlManager.getURLInfo("testtest"));
+    }
+
 }

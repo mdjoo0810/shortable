@@ -7,4 +7,6 @@ public interface URLs {
 
     URLInfo makeShorten(String email, String originalUrl);
 
+    URLInfo getURLInfo(String code);
+
 }
