@@ -8,7 +8,7 @@ pipeline {
     environment {
         imagename = "shortable_app"
         registryCredential = 'SHORTABLE_DOCKER_HUB'
-        dockerImage = 'shortabledokcer/shortable_app'
+        dockerImage = 'shortabledokcer:shortable_app'
     }
 
     stages {
