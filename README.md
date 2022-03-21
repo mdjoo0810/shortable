@@ -1,6 +1,7 @@
 # Shortable
-
 긴 URL을 짧은 URL로 변환해 주는 서비스
+
+[WEB SITE](https://shortable.link)
 
 ## 시스템 요구 사항 및 목표
 ### 기능 요구 사항
@@ -18,4 +19,6 @@
 5. ~~Short URL로 리다이렉션이 된 횟수를 알 수 있어야 한다.~~ 
 
 ## 서비스 API
+[Document SITE](https://api.shortable.link/document)
+
 API Document Site 제작중
