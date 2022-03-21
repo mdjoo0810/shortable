@@ -8,7 +8,7 @@ pipeline {
     environment {
         imagename = "shortable_app"
         registryCredential = 'SHORTABLE_DOCKER_HUB'
-        dockerImage = ''
+        dockerImage = 'shortabledokcer/shortable_app'
     }
 
     stages {
@@ -77,6 +77,7 @@ pipeline {
             steps {
                 echo 'Push Docker'
                 script {
+
                     docker.withRegistry('', registryCredential) {
                         dockerImage.push("1.0")  // ex) "1.0"
                     }
