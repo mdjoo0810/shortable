@@ -11,7 +11,7 @@ class MemberInfoTest {
     void transfer_test() {
         Member anonymous = Member.anonymous("anonymous@" + CommonFixture.getDomainURL());
         MemberInfo memberInfo = new MemberInfo(anonymous);
-        assertEquals("anonymous@shortable.me", memberInfo.getEmail());
+        assertEquals("anonymous@shortable.link", memberInfo.getEmail());
         assertEquals("GUEST", memberInfo.getName());
     }
 

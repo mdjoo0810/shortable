@@ -10,7 +10,7 @@ public class MemberFixture {
         Member member = new Member();
         ReflectionTestUtils.setField(member, "id", 1L);
         ReflectionTestUtils.setField(member, "name", "GUEST");
-        ReflectionTestUtils.setField(member, "email", "anonymous@shortable.me");
+        ReflectionTestUtils.setField(member, "email", "anonymous@shortable.link");
         ReflectionTestUtils.setField(member, "createdAt", ZonedDateTime.now());
         return member;
     }
