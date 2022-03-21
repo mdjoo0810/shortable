@@ -15,4 +15,9 @@ public class URLFacade {
         return urLs.makeShorten(email, originalURL);
     }
 
+    public String getOriginalURL(String code) {
+        URLInfo urlInfo = urLs.getURLInfo(code);
+        return urlInfo.getOriginalURL();
+    }
+
 }

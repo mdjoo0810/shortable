@@ -23,4 +23,14 @@ class URLFacadeTest {
         assertNotNull(urlInfo.getOriginalURL());
     }
 
+    @Test
+    void get_url_info() {
+        URLs mock = mock(URLs.class);
+        when(mock.getURLInfo(anyString())).thenReturn(URLInfoFixture.get());
+        URLFacade urlFacade = new URLFacade(mock);
+
+        String testtest = urlFacade.getOriginalURL("testtest");
+        assertEquals(URLInfoFixture.get().getOriginalURL(), testtest);
+    }
+
 }
