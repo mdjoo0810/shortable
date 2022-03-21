@@ -5,6 +5,7 @@ import me.mdjoo0810.shortable.common.enums.CookieKey;
 import me.mdjoo0810.shortable.member.application.MemberFacade;
 import me.mdjoo0810.shortable.member.domain.entity.MemberInfo;
 import me.mdjoo0810.shortable.member.domain.entity.MemberInfoFixture;
+import me.mdjoo0810.shortable.url.application.URLFacade;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -21,6 +22,7 @@ import static org.mockito.Mockito.when;
 class IndexControllerTest {
 
     MemberFacade memberFacade = mock(MemberFacade.class);
+    URLFacade urlFacade = mock(URLFacade.class);
 
     @Test
     void index_not_have_cookie() {
@@ -28,7 +30,7 @@ class IndexControllerTest {
         MockHttpServletResponse response = new MockHttpServletResponse();
         when(memberFacade.registerAnonymous()).thenReturn(MemberInfoFixture.get());
 
-        IndexController controller = new IndexController(memberFacade);
+        IndexController controller = new IndexController(memberFacade, urlFacade);
         controller.index(null, request, response, "", "");
         Cookie cookie = response.getCookie(CookieKey.LOGIN_USER.getValue());
         assertEquals(MemberInfoFixture.get().getEmail(), Objects.requireNonNull(cookie).getValue());
@@ -45,7 +47,7 @@ class IndexControllerTest {
         request.setCookies(tmpCookie);
 
 
-        IndexController controller = new IndexController(memberFacade);
+        IndexController controller = new IndexController(memberFacade, urlFacade);
         String index = controller.index(null, request, response, "", "");
 
         assertEquals("index", index);
@@ -62,7 +64,7 @@ class IndexControllerTest {
         request.setCookies(tmpCookie);
 
 
-        IndexController controller = new IndexController(memberFacade);
+        IndexController controller = new IndexController(memberFacade, urlFacade);
         String index = controller.index(mockModel, request, response, "https://test.com/short", "https://test.com/original");
 
         assertEquals("index", index);
@@ -79,7 +81,7 @@ class IndexControllerTest {
         request.setCookies(tmpCookie);
 
 
-        IndexController controller = new IndexController(memberFacade);
+        IndexController controller = new IndexController(memberFacade, urlFacade);
         String index = controller.index(mockModel, request, response, "https://test.com/short", "");
 
         assertEquals("index", index);
