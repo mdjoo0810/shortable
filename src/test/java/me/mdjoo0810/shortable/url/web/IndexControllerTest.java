@@ -87,4 +87,12 @@ class IndexControllerTest {
         assertEquals("index", index);
     }
 
+    @Test
+    void go_to_api_doc_page() {
+        IndexController controller = new IndexController(memberFacade, urlFacade);
+        String resPage = controller.goToAPI();
+
+        assertEquals("api_doc", resPage);
+    }
+
 }

@@ -55,4 +55,9 @@ public class IndexController {
         return "redirect:" + originalURL;
     }
 
+    @GetMapping("/api/doc")
+    public String goToAPI() {
+        return "api_doc";
+    }
+
 }

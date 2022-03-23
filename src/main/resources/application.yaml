@@ -1,11 +1,30 @@
 domain-url: shortable.link
 
+server:
+  port: 8000
+  error:
+    whitelabel:
+      enabled: false
+    include-exception: true
+    include-stacktrace: always
 spring:
+  profiles:
+    active: local
+  main:
+    banner-mode: 'off'
+  output:
+    ansi:
+      enabled: ALWAYS
+  jpa:
+    properties:
+      hibernate.default_batch_fetch_size: 1000
+
+---
+spring:
+  profiles: local
   h2:
     console:
       enabled: true
-  profiles:
-    active: local
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:tcp://localhost/~/dev/libs/h2/data/shortable
@@ -14,3 +33,19 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+---
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/shortable?serverTimezone=UTC&characterEncoding=UTF-8
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+    properties:
+      hibernate:
+        format_sql: false
