@@ -1,4 +1,4 @@
-package me.mdjoo0810.shortable.config;
+package me.mdjoo0810.shortable.common.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
